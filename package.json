@@ -8,12 +8,19 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "vue": "^2.5.17"
+    "@types/axios": "^0.14.0",
+    "@types/stylus": "^0.48.30",
+    "@types/web3": "^1.0.11",
+    "axios": "^0.18.0",
+    "stylus": "^0.54.5",
+    "vue": "^2.5.17",
+    "web3": "github:truechain/web3.js#master"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.5",
     "@vue/cli-plugin-eslint": "^3.0.5",
     "@vue/cli-service": "^3.0.5",
+    "stylus-loader": "^3.0.2",
     "vue-template-compiler": "^2.5.17"
   },
   "eslintConfig": {
