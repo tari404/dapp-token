@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <nav>
-      <div class="main-width">ERC20自动发币平台</div>
+      <div class="main-width">
+        <span>ERC20自动发币平台</span>
+        <input type="text" v-model="token" @change="updateToken">
+      </div>
     </nav>
     <section>
       <div class="main-width">
@@ -18,10 +21,12 @@
       <transfer v-show="route === 1"/>
       <token v-show="route === 2"/>
     </section>
+    <notice />
   </div>
 </template>
 
 <script>
+import Notice from '@/components/Notice'
 import Deploy from '@/components/Deploy'
 import Transfer from '@/components/Transfer'
 import Token from '@/components/Token'
@@ -31,6 +36,7 @@ export default {
   data () {
     return {
       route: 0,
+      token: '输入Token',
       menu: [
         '发币',
         '交易',
@@ -41,9 +47,13 @@ export default {
   methods: {
     toggleRoute (index) {
       this.route = index
+    },
+    updateToken () {
+      this.$store.commit('setToken', this.token)
     }
   },
   components: {
+    Notice,
     Deploy,
     Transfer,
     Token
@@ -56,7 +66,14 @@ body
   margin 0
   background-color #f0f4f8
   font-family Avenir,Helvetica,Arial,sans-serif
-
+body::-webkit-scrollbar
+  display none
+  width 0
+  height 0
+  opacity 0
+a
+  color #0d85da
+  text-decoration none
 ul
   margin 0
   padding 0
@@ -76,7 +93,11 @@ nav
   box-shadow 0 2px 4px #0001
   font-size 20px
   div
-    padding 0 20px
+    padding 0 10px
+    line-height 40px
+  input
+    float right
+    color #999
 section
   margin 20px 10px
   display flex
@@ -103,7 +124,7 @@ input
   overflow hidden
   display grid
   grid-gap 1px
-  grid-template-columns repeat(3, 120px)
+  grid-template-columns repeat(3, 110px)
   box-shadow 0 2px 4px #0001
   li
     height 60px
@@ -121,19 +142,15 @@ input
   padding 20px
   box-shadow 0 2px 4px #0001
   min-width 320px
-  li
-    display flex
-    margin 14px 0
   .erc-button
-    margin-top 40px
+    margin-top 30px
 .erc-content-title
   font-size 18px
   line-height 30px
 
 .erc-notice
-  width 40px
-  height 40px
-  position relative
+  font-size 12px
+  color #666
 
 .erc-button
   border-radius 3px

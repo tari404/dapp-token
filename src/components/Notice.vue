@@ -1,80 +1,61 @@
 <template>
-  <div>
-    <div class="help" @mouseenter="mouseenter" @mouseleave="mouseleave">?</div>
-    <div class="notice" :style="{
-      'width': `${hover ? width + 10 : 0}px`,
-      'opacity': hover ? 1 : 0
-    }">
-      <span></span>
-      <div :style="{'width': `${width}px`}" v-html="notice"></div>
+  <div style="display: contents;">
+    <div id="tc-notice" @mouseover="holdNotice" @mouseleave="releaseNotice">
+      <p />
+      <span class="tc-notice-close" @click="closeNotice">X</span>
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
-  name: 'Help',
-  props: ['notice', 'width'],
-  data () {
-    return {
-      hover: false
-    }
+  name: 'Notice',
+  mounted () {
+    this.bindNoticeBox(this.$el.querySelector('#tc-notice'))
   },
   methods: {
-    mouseenter () {
-      this.hover = true
+    ...mapMutations([
+      'bindNoticeBox',
+      'holdNoticeBox',
+      'closeNoticeBox'
+    ]),
+    holdNotice () {
+      this.holdNoticeBox(true)
     },
-    mouseleave () {
-      this.hover = false
+    releaseNotice () {
+      this.holdNoticeBox(false)
+    },
+    closeNotice () {
+      this.closeNoticeBox()
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-.help
-  position absolute
-  font-weight 800
-  top 8px
-  right 8px
-  width 20px
-  height 20px
-  line-height 22px
-  border solid 2px #fff2d6
-  color #ffb800
-  border-radius 100%
-  text-align center
-  cursor pointer
-  transition background-color .6s
-  background-color #fff
-  &:hover
-    background-color #fff2d6
-.notice
-  position absolute
-  border-radius 3px
-  font-size 14px
+#tc-notice
+  position fixed
+  width 100vw
+  min-height 60px
+  bottom 0
+  left 0
+  z-index 20
+  box-shadow 0px -4px 4px #0001
+  transition transform .6s, opacity .3s
+  transform translateY(110%)
+  padding 20px
+  box-sizing border-box
   line-height 20px
-  width 0px
-  left 30px
-  top 20px
-  opacity 0
+  color #fff
+  opacity .9
+  &:hover
+    opacity 1
+.tc-notice-close
+  position absolute
+  top 50%
+  right 20px
   transform translateY(-50%)
-  overflow hidden
-  transition width .2s linear, opacity .4s
-  span
-    height 0
-    width 0
-    border-right solid 8px #fff2d6
-    border-top solid 6px transparent
-    border-bottom solid 6px transparent
-    position absolute
-    top 50%
-    left 2px
-    transform translate3d(0, -50%, 0)
-  div
-    padding 8px
-    box-sizing border-box
-    background-color #fff2d6
-    color #0008
-    margin-left 10px
+  cursor pointer
 </style>

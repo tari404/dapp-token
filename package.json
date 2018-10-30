@@ -9,11 +9,14 @@
   },
   "dependencies": {
     "@types/axios": "^0.14.0",
+    "@types/bn.js": "^4.11.3",
     "@types/stylus": "^0.48.30",
     "@types/web3": "^1.0.11",
     "axios": "^0.18.0",
+    "bn.js": "^4.11.8",
     "stylus": "^0.54.5",
     "vue": "^2.5.17",
+    "vuex": "^3.0.1",
     "web3": "github:truechain/web3.js#master"
   },
   "devDependencies": {
