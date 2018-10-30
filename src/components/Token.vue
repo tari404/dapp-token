@@ -48,8 +48,14 @@ export default {
   },
   computed: {
     ...mapState({
-      eth: state => state.eth
+      eth: state => state.eth,
+      updateTimer: state => state.updateTimer
     })
+  },
+  watch: {
+    updateTimer () {
+      this.update()
+    }
   },
   mounted () {
     this.update()

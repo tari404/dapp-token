@@ -167,7 +167,8 @@ export default {
       this.deployStatus = '编译中...'
       this.toDeploy().then(res => {
         this.reset()
-        const notice = `部署成功，合约地址为：${res.address}`
+        this.$store.commit('update')
+        const notice = `部署成功，合约地址为：${res.data.data}`
         this.$store.dispatch('notice', ['log', notice, 10000])
       }).catch(err => {
         this.$store.dispatch('notice', ['error', err.message, 10000])

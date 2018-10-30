@@ -16,6 +16,8 @@ const state = {
 
   token: '',
 
+  updateTimer: 0,
+
   noticeBoxTimer: 0,
   noticeBox: null,
   noticeTextBox: null,
@@ -39,6 +41,9 @@ const mutations = {
   },
   setToken (state, token) {
     state.token = token
+  },
+  update (state) {
+    state.updateTimer++
   }
 }
 

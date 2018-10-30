@@ -3,7 +3,7 @@
     <nav>
       <div class="main-width">
         <span>ERC20自动发币平台</span>
-        <input type="text" v-model="token" @change="updateToken">
+        <input type="text" v-model="token" @focus="clearInput" @change="updateToken">
       </div>
     </nav>
     <section>
@@ -47,6 +47,9 @@ export default {
   methods: {
     toggleRoute (index) {
       this.route = index
+    },
+    clearInput () {
+      this.token = ''
     },
     updateToken () {
       this.$store.commit('setToken', this.token)
