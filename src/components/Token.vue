@@ -19,51 +19,17 @@
 import BN from 'bn.js'
 import { mapActions, mapState } from 'vuex'
 
-const ABI = [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function","signature":"0x06fdde03"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function","signature":"0x18160ddd"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function","signature":"0x313ce567"},{"constant":true,"inputs":[{"name":"_owner","type":"address"}],"name":"balanceOf","outputs":[{"name":"balance","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function","signature":"0x70a08231"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function","signature":"0x95d89b41"}]
-
-class ContractInfo {
-  constructor (contract, eth) {
-    this.name = contract.name || 'Unnamed ERC20 token'
-    this.address = contract.address
-    this.symbol = '...'
-    this.decimals = '...'
-    this.totalSupply = '...'
-    this.updateBasicInfo(eth)
-  }
-
-  updateBasicInfo (eth) {
-    const c = new eth.Contract(ABI, this.address)
-    c.methods.symbol().call().then(res => { this.symbol = res })
-    c.methods.decimals().call().then(res => { this.decimals = res })
-    c.methods.totalSupply().call().then(res => { this.totalSupply = res })
-  }
-}
-
 export default {
   name: 'Token',
-  data () {
-    return {
-      contractList: []
-    }
-  },
   computed: {
     ...mapState({
-      eth: state => state.eth,
-      updateTimer: state => state.updateTimer
+      contractList: state => state.contractList
     })
   },
-  watch: {
-    updateTimer () {
-      this.update()
-    }
-  },
   mounted () {
-    this.update()
+    this.$store.dispatch('update')
   },
   methods: {
-    ...mapActions({
-      getContracts: 'query/getContracts'
-    }),
     parseBalance (input, decimals) {
       const decs = parseInt(decimals) || 18
       let balance
@@ -76,19 +42,6 @@ export default {
       const i = balanceStr.slice(0, -decs)
       const d = Array.prototype.reduce.call(balanceStr.slice(-decs), (res, n, i) => res + (i % 3 ? n : ',' + n), '')
       return { i, d }
-    },
-    update () {
-      this.getContracts().then(res => {
-        if (!res.data.status) {
-          return
-        }
-        const data = res.data.data
-        const contractList = []
-        for (const contract of data) {
-          contractList.push(new ContractInfo(contract, this.eth))
-        }
-        this.contractList = contractList
-      })
     }
   }
 }
