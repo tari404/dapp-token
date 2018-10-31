@@ -1,6 +1,6 @@
 <template>
   <div class="main-width erc-content">
-    <div class="erc-content-title">ERC20代币转账</div>
+    <div class="erc-content-title">ERC20数字资产管理</div>
     <div class="erc-select" :class="{ 'erc-select-close': !selectOpen }" @click="clickSelect">
       <ul :style="{ 'transform': `translateY(${-optionIndex * 40}px)` }" @mousewheel="scrollOptions">
         <li v-for="(item, index) in contractList" :key="index"
@@ -8,30 +8,30 @@
           @click="clickOption($event, index)">{{item.name}}</li>
       </ul>
     </div>
-    <p class="erc-contract-info"><span>代币符号</span>{{foucsContract.symbol}}</p>
-    <p class="erc-contract-info"><span>合约地址</span>{{foucsContract.address}}</p>
+    <p class="erc-contract-info"><span>数字资产符号</span>{{foucsContract.symbol}}</p>
+    <p class="erc-contract-info"><span>数字资产地址</span>{{foucsContract.address}}</p>
     <hr>
     <div class="erc-query">
       <div class="erc-button" :class="{ 'erc-button-active': balanceQueryIsVaild }">
-        <div @click="queryBalance">余额查询</div>
+        <div @click="queryBalance">资产查询</div>
       </div>
       <div class="erc-query-input">
         <input type="text" v-model="queryAddress" @change="checkBalanceQuery">
-        <span>地址</span>
+        <span>账户地址</span>
       </div>
       <div class="erc-query-output">{{balanceI}}<span class="erc-decimals">{{balanceD}}</span></div>
     </div>
     <div class="erc-query">
       <div class="erc-button" :class="{ 'erc-button-active': distributeIsVaild }">
-        <div @click="distribute">空投代币</div>
+        <div @click="distribute">资产空投</div>
       </div>
       <div class="erc-query-input">
         <input type="text" v-model="distributeAddress" @change="checkDistribute">
-        <span>地址</span>
+        <span>目标账户地址</span>
       </div>
       <div class="erc-query-input">
         <input type="text" v-model="distributeValue" @change="checkDistribute">
-        <span>数量（整数部分）</span>
+        <span>资产数量（整数部分）</span>
       </div>
     </div>
   </div>
@@ -244,7 +244,7 @@ hr
   display flex
   span
     display block
-    width 80px
+    width 100px
 .erc-query
   display flex
   margin-top 20px

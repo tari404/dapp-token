@@ -1,12 +1,12 @@
 <template>
   <div class="main-width erc-content">
-    <div class="erc-content-title">ERC20代币信息</div>
+    <div class="erc-content-title">ERC20数字资产信息</div>
     <ul>
       <li v-for="(item, index) in contractList" :key="index">
-        <p>代币地址: {{item.address}}</p>
-        <p>代币名称: {{item.name}}</p>
-        <p>代币符号: {{item.symbol}}</p>
-        <p>总发行量: 
+        <p>地址: {{item.address}}</p>
+        <p>名称: {{item.name}}</p>
+        <p>符号: {{item.symbol}}</p>
+        <p>总量: 
           <span>{{parseBalance(item.totalSupply, item.decimals).i}}</span>
           <span class="erc-decimals">{{parseBalance(item.totalSupply, item.decimals).d}}</span>
         </p>

@@ -2,7 +2,7 @@
   <div id="app">
     <nav>
       <div class="main-width">
-        <span>ERC20自动发币平台</span>
+        <span>ERC20数字资产管理平台</span>
         <input type="text" v-model="token" @focus="clearInput" @change="updateToken">
       </div>
     </nav>
@@ -40,10 +40,10 @@ export default {
       route: 0,
       token: '输入Token',
       menu: [
-        '发币',
-        '合约调用',
-        '代币信息',
-        '交易记录'
+        '部署',
+        '管理',
+        '资产信息',
+        '流动记录'
       ]
     }
   },

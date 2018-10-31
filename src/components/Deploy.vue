@@ -1,13 +1,13 @@
 <template>
   <div class="main-width erc-content">
-    <div class="erc-content-title">ERC20代币部署</div>
+    <div class="erc-content-title">ERC20数字资产部署</div>
     <ul>
-      <li> <label for="nick">代币昵称</label><input id="nick" type="text" v-model="nick"> </li>
-      <li> <label for="name">代币名称</label><input id="name" type="text" v-model="name"> </li>
+      <li> <label for="nick">数字资产昵称</label><input id="nick" type="text" v-model="nick"> </li>
+      <li> <label for="name">数字资产名称</label><input id="name" type="text" v-model="name"> </li>
       <p class="erc-notice">* 建议使用英文例如：Test True Token</p>
-      <li> <label for="symbol">代币符号</label><input id="symbol" type="text" v-model="symbol"> </li>
+      <li> <label for="symbol">数字资产符号</label><input id="symbol" type="text" v-model="symbol"> </li>
       <p class="erc-notice">* 建议使用英文大写缩写例如：TTT</p>
-      <li> <label for="total-supply">总发行量</label><input id="total-supply" type="text" v-model="totalSupply" @change="checkTotalSupply"> </li>
+      <li> <label for="total-supply">总量</label><input id="total-supply" type="text" v-model="totalSupply" @change="checkTotalSupply"> </li>
       <p class="erc-notice">* 不包括小数部分</p>
       <li> <label for="can-change">允许更换管理员</label><input id="can-change" type="checkbox" v-model="canChange"> </li>
       <li> <label for="can-kill">允许销毁</label><input id="can-kill" type="checkbox" v-model="canKill"> </li>

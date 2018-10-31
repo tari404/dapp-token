@@ -1,6 +1,6 @@
 <template>
   <div class="main-width erc-content">
-    <div class="erc-content-title">ERC20代币交易记录</div>
+    <div class="erc-content-title">ERC20数字资产流动记录</div>
     <div class="erc-select" :class="{ 'erc-select-close': !selectOpen }" @click="clickSelect">
       <ul :style="{ 'transform': `translateY(${-optionIndex * 40}px)` }" @mousewheel="scrollOptions">
         <li v-for="(item, index) in contractList" :key="index"
@@ -28,7 +28,7 @@
         </tr>
       </tbody>
     </table>
-    <p class="erc-nodata" v-if="txList.length === 0">没有交易记录</p>
+    <p class="erc-nodata" v-if="txList.length === 0">没有流动记录</p>
   </div>
 </template>
 
