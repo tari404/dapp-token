@@ -21,7 +21,33 @@ export default {
       })
     },
     getContracts ({ rootState }) {
-      return axios.get(`${rootState.TRUESCAN}/contracts`)
+      return axios.get(`${rootState.TRUESCAN}/contracts`).then(res => {
+        return res.data
+      }).catch(err => {
+        return {
+          status: false,
+          error: err,
+          data: null
+        }
+      })
+    },
+    getTokenTxs ({ rootState }, { page, size, contract }) {
+      const params = {
+        page,
+        size,
+        contract
+      }
+      return axios.get(`${rootState.TRUESCAN}/txs/token`, {
+        params
+      }).then(res => {
+        return res.data
+      }).catch(err => {
+        return {
+          status: false,
+          error: err,
+          data: null
+        }
+      })
     }
   }
 }

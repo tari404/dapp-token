@@ -225,7 +225,10 @@ export default {
 <style lang="stylus" scoped>
 .erc-notice
   margin-top -12px
-.erc-content li
-  display flex
-  margin 14px 0
+.erc-content
+  li
+    display flex
+    margin 14px 0
+  .erc-button
+    margin-top 30px
 </style>

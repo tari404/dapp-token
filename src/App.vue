@@ -20,6 +20,7 @@
       <deploy v-show="route === 0"/>
       <transfer v-show="route === 1"/>
       <token v-show="route === 2"/>
+      <transaction v-show="route === 3"/>
     </section>
     <notice />
   </div>
@@ -30,6 +31,7 @@ import Notice from '@/components/Notice'
 import Deploy from '@/components/Deploy'
 import Transfer from '@/components/Transfer'
 import Token from '@/components/Token'
+import Transaction from '@/components/Transaction'
 
 export default {
   name: 'App',
@@ -39,8 +41,9 @@ export default {
       token: '输入Token',
       menu: [
         '发币',
-        '交易',
-        '代币信息'
+        '合约调用',
+        '代币信息',
+        '交易记录'
       ]
     }
   },
@@ -59,7 +62,8 @@ export default {
     Notice,
     Deploy,
     Transfer,
-    Token
+    Token,
+    Transaction
   }
 }
 </script>
@@ -75,8 +79,7 @@ body::-webkit-scrollbar
   height 0
   opacity 0
 a
-  color #0d85da
-  text-decoration none
+  color inherit
 ul
   margin 0
   padding 0
@@ -92,7 +95,7 @@ li
 nav
   height 80px
   display flex
-  background-color #ffffff
+  background-color #fff
   box-shadow 0 2px 4px #0001
   font-size 20px
   div
@@ -111,6 +114,7 @@ label
   width 130px
   height 40px
 input
+  font-family inherit
   font-size inherit
   box-sizing border-box
   border-radius 3px
@@ -127,17 +131,17 @@ input
   overflow hidden
   display grid
   grid-gap 1px
-  grid-template-columns repeat(3, 110px)
+  grid-template-columns repeat(4, 110px)
   box-shadow 0 2px 4px #0001
   li
     height 60px
     line-height 60px
     text-align center
-    background-color #ffffff
+    background-color #fff
     margin-right 1px
   .focus
     background-color #0d85da
-    color #ffffff
+    color #fff
 .erc-content
   background-color #fff
   border-radius 5px
@@ -145,8 +149,6 @@ input
   padding 20px
   box-shadow 0 2px 4px #0001
   min-width 320px
-  .erc-button
-    margin-top 30px
 .erc-content-title
   font-size 18px
   line-height 30px
@@ -157,7 +159,7 @@ input
 
 .erc-button
   border-radius 3px
-  color #ffffff
+  color #fff
   width 150px
   height 40px
   text-align center
@@ -176,4 +178,8 @@ input
     transform translateY(-10px)
     &:hover
       transform translateY(-6px)
+
+.erc-decimals
+  font-size 14px
+  color #666
 </style>

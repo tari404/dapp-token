@@ -30,6 +30,7 @@ class ContractInfo {
 
 const state = {
   eth: web3.eth,
+  utils: web3.utils,
 
   STELLAR: 'https://stellar.truechain.pro/ethserver',
   TRUESCAN: 'https://api.truescan.net',
@@ -93,7 +94,7 @@ const actions = {
     }
     el.style.transform = 'translateY(110%)'
     el.style.backgroundColor = color
-    tel.innerText = text
+    tel.innerHTML = text
     setTimeout(() => {
       el.style.transform = 'translateY(0%)'
     }, delay)
@@ -106,16 +107,20 @@ const actions = {
   },
   update ({ dispatch, commit, state }) {
     dispatch('query/getContracts').then(res => {
-      if (!res.data.status) {
+      if (!res.status) {
         return
       }
-      const data = res.data.data
+      const data = res.data
       const contractList = []
       for (const contract of data) {
         contractList.push(new ContractInfo(contract, state.eth))
       }
       commit('updateContractList', contractList)
     })
+  },
+  getBalance(_, [address, account]) {
+    const c = new web3.eth.Contract(ABI, address)
+    return c.methods.balanceOf(account).call()
   }
 }
 

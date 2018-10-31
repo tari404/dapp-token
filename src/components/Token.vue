@@ -8,7 +8,7 @@
         <p>代币符号: {{item.symbol}}</p>
         <p>总发行量: 
           <span>{{parseBalance(item.totalSupply, item.decimals).i}}</span>
-          <span class="decimals">{{parseBalance(item.totalSupply, item.decimals).d}}</span>
+          <span class="erc-decimals">{{parseBalance(item.totalSupply, item.decimals).d}}</span>
         </p>
       </li>
     </ul>
@@ -55,7 +55,4 @@ export default {
   border solid 1px #ddd
   p
     margin 4px 0
-  .decimals
-    font-size 14px
-    color #666
 </style>
