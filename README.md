@@ -1,4 +1,4 @@
-# easydapp-token
+# ERC20-token-helper
 
 ## Project setup
 ```
