@@ -88,8 +88,7 @@ li
 
 .main-width
   margin auto
-  flex 0 1 800px
-  max-width 800px
+  flex 0 0 800px
   box-sizing border-box
 
 nav
