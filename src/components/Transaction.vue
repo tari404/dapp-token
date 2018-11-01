@@ -20,10 +20,22 @@
       </thead>
       <tbody>
         <tr v-for="(item, index) in txList" :key="index">
-          <td><tt>{{item.txHash.slice(0, 12)}}...{{item.txHash.slice(62, 66)}}</tt></td>
+          <td>
+            <a target="_blank" :href="`https://www.truescan.net/tx/${item.txHash}`">
+              {{item.txHash.slice(0, 12)}}...{{item.txHash.slice(62, 66)}}
+            </a>
+          </td>
           <td>{{getDuration(now - item.time)}}</td>
-          <td><tt>{{item.from.slice(0, 6)}}...{{item.from.slice(38, 42)}}</tt></td>
-          <td><tt>{{item.to.slice(0, 6)}}...{{item.to.slice(38, 42)}}</tt></td>
+          <td>
+            <a target="_blank" :href="`https://www.truescan.net/address/${item.from}#token`">
+              {{item.from.slice(0, 6)}}...{{item.from.slice(38, 42)}}
+            </a>
+          </td>
+          <td>
+            <a target="_blank" :href="`https://www.truescan.net/address/${item.to}#token`">
+              {{item.to.slice(0, 6)}}...{{item.to.slice(38, 42)}}
+            </a>
+          </td>
           <td>{{item.balanceI}}<span class="erc-decimals">{{item.balanceD}}</span></td>
         </tr>
       </tbody>
