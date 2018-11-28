@@ -189,7 +189,7 @@ export default {
       if (compileRes.data.error) {
         throw new Error(compileRes.data.msg)
       }
-      const input = '0x' + compileRes.data.contracts[':ERC20Token'].bytecode
+      const input = '0x' + compileRes.data.contracts['main.sol']['ERC20Token'].evm.bytecode.object
       this.deployStatus = '签名中...'
       const { rawTransaction } = await this.eth.accounts.signTransaction({
         from: '0x7E5F4552091A69125d5DfCb7b8C2659029395Bdf',
